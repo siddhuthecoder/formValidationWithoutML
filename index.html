@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Form validation</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+  </head>
+  <body style="background:#080710;" >
+<marquee><h3 style="font-weight:bold;">hi this is siddhu from sriakakulam </h3></marquee>
+    <div class="result">
+        <div class=" con center d-flex justify-content-center align-items-center" style="width:100%;height:100vh">
+            <div class="info d-flex justify-content-center align-item-center" style="width:90%;max-width:380px;height:400px;flex-direction:column;">
+                <div class="img">
+                    <img src="https://intranet.rguktn.ac.in/SMS/usrphotos/user/N200081.jpg" alt="Image">
+                </div>
+                <div class="name">
+                    <h2 align="center" class="student-name">Name</h2>
+                </div>
+                <div class="id-no">
+                    <h4 align="center" class="student-id">XXXXXXX</h4>
+                </div>
+                <div class="phone-no">
+                    <h4 align="center" class="student-phone">XXXXXXXXXX</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="center d-flex justify-content-center align-items-center" style="width:100%;height:100vh">
+            <form>
+                <h3 style="text-align:center;color:crimson;    color: #ffffff;">HII Techies<br>
+                  
+                </h3>
+                <div class="d-flex p-1" style="flex-direction:column">
+                    <label class="form-label" for="Name">Enter your Name</label>
+                    <input type="text" id="Name" class="form-control" placeholder="Fullname">
+                    <h6 class="error-message name-error pt-2" style="color:red;font-size:18px;"></h6>
+                </div>
+
+                <div class="d-flex p-1" style="flex-direction:column">
+                <label class="form-label" for="email">Enter Your Email address</label>
+                <input type="email" id="email" class="form-control" placeholder="@rguktn.ac.in">
+                <h6 class="error-message mail-error  pt-2" style="color:red;font-size:18px;"></h6>
+                </div>
+
+                <div class="d-flex p-1" style="flex-direction:column">
+                <label class="form-label" for="phone">Enter your Phone Number</label>
+                <input type="text" id="phone" class="form-control" placeholder="10 digit number">
+                <h6 class="error-message phone-error pt-2" style="color:red;font-size:18px;"></h6>
+                </div>
+
+                <button type="submit" class="submit">
+                    Submit
+                </button>
+            </form>
+        </div>
+    </div>
+
+
+
+    <style>
+      form{
+        height: 47q0px;
+    width: 500px;
+    padding:20px;
+    background-color: rgba(255,255,255,0.07);
+      }
+        .submit{
+            font-weight: bold;
+            font-size:18px;
+            margin:20px 30%;
+            width:40%;
+            border-radius:5px;
+        }
+        label {
+            display: inline-block;
+            color: white;
+        }
+        input {
+            
+            background-color: rgba(255,255,255,0.07);
+            border-radius: 3px;
+            
+            font-size: 14px;
+            font-weight: 300;
+        }
+        .img{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .info{
+            border:1px solid black;
+            padding:20px;
+        }
+        .info>*{
+            margin:10px 0px;
+        }
+        .id-no h4{
+            text-transform: capitalize;
+        }
+        .result{
+            background-color:rgb(0,0,0);
+            display: none;
+            opacity: 0;
+            width: 100%;
+            height:100vh;
+            position: fixed;
+            color:white;
+            transition:all 1s ease;
+        }
+        .result.show{
+            display: block;
+            opacity: 1;
+        }
+        .form-control{
+
+            
+                height: 40px;
+                width: 100%;
+                background-color: rgba(255,255,255,0.07);
+                border-radius: 3px;
+                padding: 0 5px;
+                margin-top: 3px;
+                font-size: 14px;
+                font-weight: 300;
+            
+        }
+    </style>
+
+    <script>
+
+        const submitBtn = document.querySelector('.submit');
+        const nameInput = document.getElementById('Name');
+        const mailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const nameError = document.querySelector('.name-error');
+        const mailError = document.querySelector('.mail-error');
+        const phoneError = document.querySelector('.phone-error');
+        const resultInfo = document.querySelector('.result');
+        var errorCount = 0;
+
+        submitBtn.addEventListener('click',(e)=>{
+          e.preventDefault();
+          console.log(submitBtn,nameInput,mailInput,phoneInput,nameError,phoneError,resultInfo);
+          validateForm();
+          if (errorCount === 0){
+            resultInfo.classList.add('show');
+            studentInfo();
+          }
+        });
+     
+
+        function validateForm(){
+
+            var nameerrorCount = 0;
+            var mailerrorCount = 0;
+            var phoneerrorCount = 0;
+
+                if(nameInput.value == ''){
+                    nameError.innerHTML = `<span style="color:red;margin-right:10px;"><i class="bi bi-x-circle-fill"></i></span>This field is required`;
+                    nameerrorCount++;
+                }
+                else{
+                    nameError.innerHTML='';
+                    nameerrorCount = 0;
+                }
+
+                if(mailInput.value == ''){
+                    mailError.innerHTML = `<span style="color:red;margin-right:10px;"><i class="bi bi-x-circle-fill"></i></span>This field is required`;
+                    mailerrorCount++;
+                }
+                else if(!(mailInput.value).match(/[nors]+\d{6}\@rgukt+[nors]\.ac\.in/)){
+                    mailError.innerHTML = `<span style="color:red;margin-right:10px;"><i class="bi bi-x-circle-fill"></i></span>Enter a valid rgukt mail`;
+                    mailerrorCount++;
+                }
+                else{
+                    mailError.innerHTML = ``;
+                    mailerrorCount = 0;
+                }
+
+                if(phoneInput.value == ''){
+                    phoneError.innerHTML = `<span style="color:red;margin-right:10px;"><i class="bi bi-x-circle-fill"></i></span>This field is required`;
+                    phoneerrorCount++;
+                }
+                else if(phoneInput.value.length < 10 || phoneInput.value.length >10){
+                    phoneError.innerHTML = `<span style="color:red;margin-right:10px;"><i class="bi bi-x-circle-fill"></i></span>Enter a 10 digit phone number`;
+                    phoneerrorCount++;
+                }
+                else if(!(phoneInput.value).match(/\d{10}/)){
+                    phoneError.innerHTML = `<span style="color:red;margin-right:10px;"><i class="bi bi-x-circle-fill"></i></span>Enter a valid phone number`;
+                    phoneerrorCount++;
+                }
+                else{
+                    phoneError.innerHTML = ``;
+                    phoneerrorCount = 0;
+                }
+                errorCount = nameerrorCount+mailerrorCount+phoneerrorCount;
+    }
+
+        const studentName = document.querySelector('.student-name');
+        const idNumber = document.querySelector('.student-id');
+        const mobile = document.querySelector('.student-phone');
+        const image = document.querySelector('.info .img')
+
+        function studentInfo(){
+            studentName.innerHTML = `${nameInput.value}`;
+            const idNumberValue = mailInput.value.slice(0,7);
+            idNumber.innerHTML = `${idNumberValue}`;
+            const imgid = mailInput.value.slice(1,7);
+            image.innerHTML = `<img src="https://intranet.rguktn.ac.in/SMS/usrphotos/user/N${imgid}.jpg" alt="Image">`;
+            mobile.innerHTML= `${phoneInput.value}`;
+        }
+
+    </script>
+
+    <!-- javascript of bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+  </body>
+</html>
